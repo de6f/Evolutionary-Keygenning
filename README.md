@@ -1,5 +1,5 @@
 # Evolutionary Keygenning
-A toy example for smart input generation (in this case keygenning) using genetic algorithm
+A toy example for smart input generation (in this case keygenning) using genetic algorithm and control flow graph information.
 
 # Main idea
 This software is based on [1,2] and BlackHat presentations which proposes a model for evolutionary fuzzing. 
