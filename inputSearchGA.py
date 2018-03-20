@@ -25,8 +25,10 @@ class gramEvol:
     def __init__(self, rep):
         self.grammar = dict()
         self.rep = rep
+        
     def add(self, nonterm, rule):
         self.grammar.update({nonterm:rule})
+    
     def generateStr(self, val):
         tmpList = list(self.rep)
         i = 0
@@ -196,8 +198,6 @@ class InputGenerateGA(gramEvol):
             self.calcFitness()
             self.reproduceNextGen()
             self.generation += 1
-
-
 
 if __name__ == '__main__':
     progName = 'cr4ckm3'
