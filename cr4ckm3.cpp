@@ -1,9 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include <cstdlib>
-#include <limits>
 #include <cstring>
-#include <cctype>
 using namespace std;
 
 #define P4SS_LEN 10
