@@ -36,7 +36,7 @@ class gramEvol:
             if tmpList[i] in self.grammar:
                 tmpRule = self.grammar[tmpList[i]]
                 try:
-                                        tmpList[i] = tmpRule[int(val[j]) % len(tmpRule)]
+                    tmpList[i] = tmpRule[int(val[j]) % len(tmpRule)]
                 except:
                     tmpList.append(tmpRule[int(val[j]) % len(tmpRule)])
                 j += 1
