@@ -10,6 +10,7 @@ from random import seed
 from sys import stdout
 from math import ceil
 from sys import maxint
+from math import log1p
 
 class BasicBlock:
     def __init__(self, name, nextBlocks=None, isVulnAPI=None):
@@ -89,7 +90,7 @@ class InputGenerateGA(gramEvol):
             while i != len(stagesNum):
                 if stagesNum[i] in currStage.nextBlocks:
                     tmpDiv = float(currStage.nextBlocks[stagesNum[i]])
-                    tmpFitness *= 1.5/tmpDiv
+                    tmpFitness *= 1 + log1p(1.0/tmpDiv)
                     currStage = self.findStage(stagesNum[i])
                 i += 1
             self.fitnessList.append(tmpFitness)
@@ -216,7 +217,7 @@ if __name__ == '__main__':
     s52 = BasicBlock('5.2')
     bblocks = [s0, s11, s21, s22, s31, s32, s41, s42, s43, s44, s51, s52]
 
-    mutationRate = 0.45
+    mutationRate = 0.25
     crossingOverRate = 0.75
     popSize = 2000
     ga = InputGenerateGA(progName, 10, bblocks,
