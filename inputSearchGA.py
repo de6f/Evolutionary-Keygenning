@@ -1,16 +1,11 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 import subprocess
 import string
 import time
-from random import randint
-from random import choice
-from random import seed
-from sys import stdout
-from math import ceil
-from sys import maxint
-from math import log1p
+from random import randint, choice, seed
+from sys import stdout, maxint
+from math import ceil, log1p
 
 class BasicBlock:
     def __init__(self, name, nextBlocks=None, isVulnAPI=None):
@@ -103,7 +98,7 @@ class InputGenerateGA(gramEvol):
             shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             out, err = p.communicate()
 
-            stdout.write("\rGirdi denemesi: %s "% serial)
+            stdout.write("\rTrying: %s "% serial)
             stdout.flush()
 
             lines = []
@@ -136,10 +131,10 @@ class InputGenerateGA(gramEvol):
 
     def reproduceNextGen(self):
         getMaxFit = lambda: self.fitnessList.index(max(self.fitnessList))
-        print '%d. nesil en iyi girdi: ( %s , %f )'% (self.generation,
+        print '%d. generation best: ( %s , %f )'% (self.generation,
                     self.generateStr(self.population[getMaxFit()]), max(self.fitnessList))
 
-        # Yeni bireylerin seçimi
+        # Selecting best individuals
         rouletteWheel = []
         newPop = [self.population[getMaxFit()][:]]
         sumFitness = sum(self.fitnessList)
@@ -149,14 +144,14 @@ class InputGenerateGA(gramEvol):
         for i in range(self.popSize-1):
            newPop.append(self.population[choice(rouletteWheel)][:])
 
-        # Çaprazlama - Tek noktadan
+        # One-point crossover
         for i in range(int(ceil(self.cnum))):
             a = randint(1, self.popSize-1)
             b = randint(1, self.popSize-1)
             c = randint(0, self.passSize*2-1)
             newPop[a][c:], newPop[b][c:] = newPop[b][c:], newPop[a][c:]
 
-        # Mutasyon
+        # Mutation
         for i in range(int(ceil(self.mnum))):
             a = randint(1, self.popSize-1)
             b = randint(0, self.passSize*2-1)
@@ -191,7 +186,7 @@ class InputGenerateGA(gramEvol):
                         continue
                     else:
                         self.path.append(line)
-            print '\nKeşfedilen bloklar: %s'% ' | '.join(self.path)
+            print '\nDiscovered blocks: %s'% ' | '.join(self.path)
 
             if len(self.path) == len(self.bblocks):
                 return
@@ -227,5 +222,5 @@ if __name__ == '__main__':
     ga()
     t = time.clock() - t
     r = time.time() - r
-    print 'Çalışma süresi: %f sn'% r
-    print 'Gerçek çalışma süresi: %f sn\n'% t
+    print 'Program execution time: %f s'% r
+    print 'Real time: %f s\n'% t

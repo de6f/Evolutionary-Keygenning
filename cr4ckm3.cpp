@@ -88,7 +88,7 @@ void st4g3_41() {
 
 void st4g3_42() {
     DBG_CODE("4.2");
-    if (p4ss[3] == 'M');
+    if (p4ss[3] == 'M')
         st4g3_51();
 }
 
