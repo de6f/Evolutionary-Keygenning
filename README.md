@@ -2,11 +2,11 @@
 A toy example for smart input generation (in this case keygenning) using genetic algorithm and control flow graph information.
 
 # Main idea
-This software is based on [1,2] and BlackHat presentations which proposes a model for evolutionary fuzzing. 
+This software is based on [1,2] and BlackHat presentations, which proposes a model for evolutionary fuzzing. 
 
 # Usage
 
-You need clang++ for control-flow graph extraction but, you can compile main `cr4ckm3` executable with g++ or most of the other compilers. 
+It would be best if you had clang++ for control-flow graph extraction but, you can compile the main `cr4ckm3` executable with g++ or most of the other compilers. 
 
 ```
 make 
